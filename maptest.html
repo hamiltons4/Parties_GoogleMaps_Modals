@@ -1,0 +1,97 @@
+<head>
+  <title>maptest2</title>
+</head>
+
+<body>
+ 
+  <div class="span5">
+       <div style="float: right">
+         {{> loginButtons align="right"}}
+      </div>
+  </div>
+
+   
+ 
+{{> MapDemoIndex}}
+  
+</body>
+
+<template name="MapDemoIndex">
+  {{#if showCreateDialog}}
+    {{> createDialog}}
+  {{/if}}
+
+  {{#if showInviteDialog}}
+    {{> inviteDialog}}
+  {{/if}}
+
+  <div class="bb-alert alert alert-info" style="display:none;">
+        <span>The examples populate this alert with dummy content</span>
+    </div>
+  
+  
+  <div class="map-row">
+      {{> mapCanvas}}
+  </div>
+</template>
+
+
+
+<template name="mapCanvas">
+    <h1>Search example:</h1>
+    <form action="">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <input class="form-control" id="address" type="text">
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <button type="submit" class="btn btn-default btn-md">Search:</button>
+            </div>
+          </div>
+        </div>
+    </form>
+    <div id="map-canvas" class="map-canvas"></div>
+
+    <div>
+  <h5>Search input and marker drag and drop choose address</h5>
+      <pre>
+        <code>
+        </code>
+      </pre>
+    </div>
+</template>
+
+<template name="createDialog">
+  <div class="mask" id="modalData" > </div>
+  <div class="modal" >
+    <div class="modal-header">
+      <button type="button" class="close cancel">&times;</button>
+      <h3>Add party</h3>
+    </div>
+
+    <div class="modal-body">
+      {{#if error}}
+        <div class="alert alert-error">{{error}}</div>
+      {{/if}}
+
+      <label>Title</label>
+      <input type="text" class="title span5">
+
+      <label>Description</label>
+      <textarea class="description span5"></textarea>
+
+      <label class="checkbox">
+        <input type="checkbox" class="private">
+        Private party &mdash; invitees only
+      </label>
+    </div>
+
+    <div class="modal-footer">
+      <a href="#" class="btn cancel">Cancel</a>
+      <a href="#" class="btn btn-primary save">Add party</a>
+    </div>
+  </div>
+</template>

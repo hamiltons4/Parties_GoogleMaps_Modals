@@ -1,0 +1,49 @@
+/* CSS declarations go here */
+#map-canvas2 {
+	width: 1000px;
+	height: 500px;
+
+}
+
+.map-row {
+	height:100%;
+	width:100%;
+}/* CSS declarations go here */
+
+#map-canvas {
+	width: 1000px;
+	height: 500px;
+
+}
+
+.mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: #000000;
+    opacity: .4;
+    z-index: 1;
+}
+
+input.chosen {
+    font-weight: bold;
+}
+
+
+.bb-alert {
+    position:fixed;
+    bottom:25%;
+    right:0;
+    margin-bottom:0;
+    font-size:1.2em;
+    padding:1em 1.3em;
+    z-index:2000;
+}
+
+.alert--finch {
+    display:block;
+    font-weight:bold;
+    text-align:center;
+}
