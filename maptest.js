@@ -53,11 +53,13 @@ Template.mapCanvas.events({
   'submit form': function(e, tmpl) {
       e.preventDefault();
       var searchInput = $(e.target).find('#address');
+      console.log(searchInput.val());
       //tmpl.newMap.removeMarkers();
       tmpl.mapEngine.geocode({
         address: searchInput.val(),
         callback: function(results, status) {
           if (status == 'OK') {
+        
             var latlng = results[0].geometry.location;
             tmpl.newMap.setCenter(latlng.lat(), latlng.lng());
             tmpl.newMap.addMarker({
@@ -78,7 +80,7 @@ Template.mapCanvas.events({
                   alert("Hi "+result);
                   Meets.insert({
                     title: result,
-                    location: "here" });
+                    location: searchInput.val() });
                   
                 }
                 }
