@@ -10,16 +10,21 @@
       </div>
   </div>
 
-   <!--I'm checking to see if the editor has switched branches-->
- 
-{{> MapDemoIndex}}
+   <!--the Bootstrap container is in the main body instead of the 
+     templates. There must be two divs for the side by side spacing.
+      One contains the search box and text displays and the other contains
+     the mapcanvas.-->
+  <div class="container">
   
+{{> MapDemoIndex}}
+  </div>
 </body>
 
+
 <template name="MapDemoIndex">
-  {{#if showCreateDialog}}
+<!--  {{#if showCreateDialog}} -->
     {{> createDialog}}
-  {{/if}}
+<!--  {{/if}} -->
 
   {{#if showInviteDialog}}
     {{> inviteDialog}}
@@ -31,30 +36,42 @@
   
   
   <div class="map-row">
-      {{> mapCanvas}}
+   
+      
+          {{> mapCanvas}}
+         
   </div>
 </template>
 
 
 
 <template name="mapCanvas">
-    <h1>Search example:</h1>
+  <div class="row">
+    <div class="col-md-5 textStuff">
+    <h1>Search:</h1>
     <form action="">
-        <div class="row">
-          <div class="col-sm-6">
+        
+         
             <div class="form-group">
               <input class="form-control" id="address" type="text">
             </div>
-          </div>
-          <div class="col-sm-3">
+         
+         
             <div class="form-group">
               <button type="submit" class="btn btn-default btn-md">Search:</button>
             </div>
-          </div>
-        </div>
+      
+         {{> dataDesk}}
+   
+      
     </form>
-    <div id="map-canvas" class="map-canvas"></div>
-
+    </div>
+    
+    <div class="col-md-7">
+         <div id="map-canvas" class="map-canvas"></div>
+    </div>
+  </div>
+ <!-- 
     <div>
   <h5>Search input and marker drag and drop choose address</h5>
       <pre>
@@ -62,7 +79,10 @@
         </code>
       </pre>
     </div>
+  -->
 </template>
+
+
 
 <template name="createDialog">
   <div class="mask" id="modalData" > </div>
@@ -95,3 +115,24 @@
     </div>
   </div>
 </template>
+
+<template name="dataDesk">
+  <h3>Pickup Name:<span id="pickName"> test</span></h3>
+  <h3>Date:<span id="pickDate"> test date</span></h3>
+  <h3>Time:<span id="pickTime"> test time</span></h3>
+  <h3>Who's Coming:<span id="coming"> the structure from parties with rsvp icons goes here</span></h3>
+  
+</template>
+<!-- For testing purposes I shall set session variables to allow the create dialog modal
+and the invite dialog modals to be visible.  The create dialog should show when a party is being created. 
+This could occur as a result of the submit on the search window. (woul need a 'cancel' ) or as it is now,
+when a marker is clicked the bootboxjs modal comes up and this enters into the Meets collection. This makes 
+a new entry even if there is an old one for that marker and does not require sign in. nor that the signed
+in be the owner/creator of that party. I want: Sign in to be required, Owner to change, Only one entry per
+marker, marker highlighted. Search sets the marker. A div appears 'click on marker to give details of the
+meet' or click to remove marker' After they click the modal comes up and they can enter a date (use javascript 
+'date' to easily search this) The location shows up from the search, a title, their name, and who thay are 
+inviting. And perhaps their emails to send invitational emails which also contain the site address to rsvp.
+Also I'd like the login on the left in a navbar which only covers the left.
+
+-->

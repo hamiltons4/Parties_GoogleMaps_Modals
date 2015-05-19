@@ -66,12 +66,14 @@ Template.mapCanvas.events({
               lat: latlng.lat(),
               lng: latlng.lng(),
               click: function(e) {
+               this.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
                Session.set("showCreateDialog", true); 
                //alert('You clicked in this marker');
                 //$("#modalData").modal("show");
                // bootbox.alert("Hi there!");
-             bootbox.prompt({
+           /*  bootbox.prompt({
                title: "What is your real name?",
+               address: searchInput.val(),
                value: "makeusabrew",
                callback: function(result) {
                 if (result === null) {
@@ -84,9 +86,48 @@ Template.mapCanvas.events({
                   
                 }
                 }
+                });   */
+                
+                bootbox.dialog({
+                   title: "Please Enter Pickup Details.",
+                   message: '<form>' + '<label for="title">Title</label>' +
+                          '<input type="text" id="textNote">' + '<br>' +
+                          '<label for="date">Date</label>' +
+                          '<input type="text" id="dateNote">' + '<br>' +
+                          '<label for="time">Time</label>' +
+                          '<input type="text" id="timeNote">' + '<br>' +
+                          '<label for="whos">Who</label>' +
+                          '<input type="text" id="whoNote">' +
+                          '</form>',
+                  buttons: {
+                    success: {
+                      label: "Save",
+                      className: "btn-success",
+                      callback: function() {
+                        var title1 = $('#textNote').val();
+                        var date1 = $('#dateNote').val();
+                        var time1 = $('#timeNote').val();
+                        var who1 = $('#whoNote').val();
+                        $('#pickName').text(" " + title1);    
+                        $('#pickDate').text(" " + date1);       
+                        $('#pickTime').text(" " + time1);
+                        $('#coming').text(" " + who1);  
+                        Meets.insert({
+                            title: title1,
+                            date: date1,
+                            time: time1,
+                            person: who1,
+                        });
+                        
+                        console.log("   " + title1);
+                        console.log("   " + date1); 
+                        console.log("   " + time1);
+                        console.log("   " + who1);
+                      }
+                    }
+                  }
+                  
                 });
-                
-                
                 
                },
 
